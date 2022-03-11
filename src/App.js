@@ -1,13 +1,10 @@
-import { Button } from './ui/buttons';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
     return (
-        <div>
-            <Button>UI Button</Button>
-            <Button bgcolor="orange" color="white">
-                Warning
-            </Button>
-        </div>
+        <>
+            <DashboardPage />
+        </>
     );
 }
 

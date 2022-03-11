@@ -10,4 +10,10 @@ const Button = styled.button`
     color: ${(props) => props.color || '#6e6e6e'};
 `;
 
-export { Button };
+const IconButton = styled.button`
+    border: none;
+    background-color: transparent;
+    outline: none;
+`;
+
+export { Button, IconButton };
