@@ -1,5 +1,22 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { Label, Input } from './../../ui/forms';
+import { SubmitButton } from './../../ui/buttons';
+
+const LoginPageStyles = styled.section`
+    margin: 4rem auto 0;
+    max-width: 480px;
+    header {
+        text-align: center;
+        font-size: 2rem;
+    }
+`;
+
+const FormControl = styled.div`
+    margin: 1rem 0;
+`;
 
 function LoginPage(props) {
     let navigation = useNavigate();
@@ -26,14 +43,40 @@ function LoginPage(props) {
                     </li>
                 </ul>
             </nav>
-            <header>
-                <h1>Login Page</h1>
-            </header>
+            <LoginPageStyles>
+                <header>
+                    <h2>Welcome, Please Login.</h2>
+                </header>
 
-            <form onSubmit={onHandleSubmit}>
-                <input type="text" required />
-                <button type="submit">Sign In</button>
-            </form>
+                <form>
+                    <FormControl className="form-control">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            placeholder="janedoe@gmail.com"
+                        />
+                    </FormControl>
+                    <FormControl className="form-control">
+                        <Label htmlFor="password">Password</Label>
+                        <Input
+                            id="password"
+                            type="password"
+                            placeholder="account password"
+                        />
+                    </FormControl>
+                    <FormControl className="form-control">
+                        <SubmitButton
+                            type="submit"
+                            padding="0.75rem"
+                            margin="1rem 0 0"
+                            fs="1rem"
+                        >
+                            Log in to Dashboard
+                        </SubmitButton>
+                    </FormControl>
+                </form>
+            </LoginPageStyles>
         </>
     );
 }
