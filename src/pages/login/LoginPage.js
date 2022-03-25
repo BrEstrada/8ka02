@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { auth } from './../../libs/firebase';
 
 import { Label, Input } from './../../ui/forms';
 import { SubmitButton } from './../../ui/buttons';
@@ -19,16 +20,25 @@ const FormControl = styled.div`
 `;
 
 function LoginPage(props) {
-    let navigation = useNavigate();
+    console.log(auth);
+    // let navigation = useNavigate();
 
-    // JS
-    function onHandleSubmit(e) {
+    // // JS
+    // function onHandleSubmit(e) {
+    //     e.preventDefault();
+    //     // check the inputs email and password
+    //     // firebase auth signInWithEmailAndPassword
+    //     // true -> Dashboard
+    //     // false -> resubmit
+    //     navigation('/dashboard');
+    // }
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function onLoginRequest(e) {
         e.preventDefault();
-        // check the inputs email and password
-        // firebase auth signInWithEmailAndPassword
-        // true -> Dashboard
-        // false -> resubmit
-        navigation('/dashboard');
+        // Login a user using authentication.
     }
 
     return (
@@ -48,21 +58,24 @@ function LoginPage(props) {
                     <h2>Welcome, Please Login.</h2>
                 </header>
 
-                <form>
+                <form onSubmit={onLoginRequest}>
                     <FormControl className="form-control">
                         <Label htmlFor="email">Email</Label>
                         <Input
                             id="email"
-                            type="email"
+                            type="text"
                             placeholder="janedoe@gmail.com"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </FormControl>
                     <FormControl className="form-control">
                         <Label htmlFor="password">Password</Label>
                         <Input
                             id="password"
-                            type="password"
+                            type="text"
                             placeholder="account password"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </FormControl>
                     <FormControl className="form-control">
